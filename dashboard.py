@@ -40,9 +40,12 @@ warnings.filterwarnings("ignore")
 
 ####### Load Dataset ###########################################################
 
-df = pd.read_csv('processed_data.csv', usecols=['rating','text','domain','clean_text'] ,delimiter=',')
-x=df['text']
-y=df['rating']
+
+
+#df = pd.read_csv('processed_data.csv', usecols=['rating','clean_text','Date'] ,delimiter=',')
+#x=df['clean_text']
+#y=df['rating']
+
 
 #########################Page Title###############################
 
@@ -69,7 +72,17 @@ st.markdown(
     "<h2 style='text-align: center; color: white;'>Customer Reviews EDA 📊</h2>", 
     unsafe_allow_html=True
 )
-
+#######
+filename = st.sidebar.file_uploader("Upload reviews data:", type=("csv", "xlsx"))
+if filename is not None:
+    df = pd.read_csv(filename)
+    df["clean_text"] = df["clean_text"].astype("str")
+    #data["sentiment"] = np.where(data['score'] >= .5, "Positive", "Negative")
+    df = df[['rating','clean_text','Date']]
+    df['Date']=pd.to_datetime(df['Date'])
+    df['quarter'] = pd.PeriodIndex(df.Date, freq='Q')
+    st.sidebar.write(df['quarter'][0])
+    st.sidebar.write(df['Date'][0])
 
 ######
  #Write Summary of the Tweets
@@ -338,7 +351,7 @@ if topic == 'All Reviews' and selected_rating == 3:
         df,
         x='char_count',
         color='rating',
-        category_orders={'rating': [2, 1, 0]},  # Assuming 2 for Positive, 1 for Neutral, 0 for Negative
+        category_orders={'rating': [2, 1, 0]},  #    Assuming 2 for Positive, 1 for Neutral, 0 for Negative
         nbins=25,  # Number of bins
         title='Distribution of Review Lengths',
         labels={'char_count': 'Review Length'},
