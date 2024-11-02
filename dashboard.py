@@ -7,16 +7,27 @@ import matplotlib.pyplot as plt
 
 from sklearn import datasets
 import streamlit as st
-from wordcloud import WordCloud
+from wordcloud import WordCloud ,STOPWORDS , ImageColorGenerator
 import matplotlib.pyplot as plt
 import plotly.figure_factory as ff
 import plotly.express as px
 import nltk
 from nltk import ngrams
 from collections import Counter
+from nltk.corpus import stopwords
 
-# Download NLTK data files (only need to run once)
+
+import io
+import nltk
+from nltk.tokenize import word_tokenize
+from nltk.corpus import stopwords
+from nltk.stem import SnowballStemmer
+nltk.download('stopwords')
 nltk.download('punkt')
+from sklearn.feature_extraction.text import TfidfVectorizer
+import pickle
+# Download NLTK data files (only need to run once)
+#nltk.download('punkt')
 
 #nltk.download('punkt')
 from helper_functions import *
