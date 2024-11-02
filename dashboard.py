@@ -553,7 +553,7 @@ elif topic not in ['All Reviews'] and selected_rating in [0, 1, 2]:
 # Function to get n-grams from a given text
 def get_ngrams(text, n):
     # Tokenize the text
-    tokens = nltk.word_tokenize(text)
+    tokens = word_tokenize(text)
     # Generate n-grams
     n_grams = ngrams(tokens, n)
     return n_grams
