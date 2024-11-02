@@ -24,6 +24,7 @@ from nltk.corpus import stopwords
 from nltk.stem import SnowballStemmer
 nltk.download('stopwords')
 nltk.download('punkt')
+nltk.download('all')
 from sklearn.feature_extraction.text import TfidfVectorizer
 import pickle
 # Download NLTK data files (only need to run once)
