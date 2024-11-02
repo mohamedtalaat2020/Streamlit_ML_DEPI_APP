@@ -5,6 +5,4 @@ seaborn
 scikit-learn
 matplotlib
 nltk
-plotly
-collections
-	
+plotly	
